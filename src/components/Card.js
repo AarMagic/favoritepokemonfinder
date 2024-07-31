@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import '../types.css';
-import { type } from '@testing-library/user-event/dist/type';
 
 
 export const Card = ({ url, pokemonsFav, dispatch }) => {
@@ -18,7 +17,7 @@ export const Card = ({ url, pokemonsFav, dispatch }) => {
     }, [])
 
     useEffect(() => {
-        if (pokemonsFav > 0) {
+        if (pokemonsFav.length > 0) {
             if (pokemonState.name) {
                 let favorite = pokemonsFav.some(pokemon => pokemon.name === pokemonState.name);
                 setFavoriteState(favorite);
@@ -68,6 +67,7 @@ export const Card = ({ url, pokemonsFav, dispatch }) => {
             }
             setFavoriteState(false);
             dispatch(action)
+            console.log(favoriteState)
         } else {
             let action = {
                 type: "add",

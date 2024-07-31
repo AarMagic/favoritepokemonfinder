@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { PokemonsReducer } from './reducers/PokemonsReducer'
 import { Card } from './Card'
 
@@ -8,6 +8,10 @@ const init = () => {
 
 export const ShowFavorites = () => {
   const [pokemonsFav, dispatch] = useReducer(PokemonsReducer, [], init)
+
+  useEffect(() => {
+    localStorage.setItem("pokemons", JSON.stringify(pokemonsFav))
+  }, [pokemonsFav])
    
   return (
     <div className='content'>
